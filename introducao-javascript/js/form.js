@@ -9,27 +9,29 @@
         //Extrair informação do paciente do form
         var form = document.querySelector("#form-adiciona");  
         var paciente = obterPacienteDoFormulario(form);     
-
-        //Cria o TD/TD do paciente
-        var pacienteTr = montaTr(paciente);
-
         var erros = validaPaciente(paciente);
 
         if(erros.length > 0){
             //console.log("Paciente inválido!");
             exigeMensagemErros(erros);            
             return;
-        }
-
-        //Adicionando o paciente na tabela
-        var tabela = document.querySelector("#tabela-pacientes");
-        tabela.appendChild(pacienteTr);       
+        }     
+          
+        adicionarPacientesNaTabela(paciente);
 
         form.reset();
-        var mensagensDeErro = document.querySelector("@mensagens-erro");
+        var mensagensDeErro = document.querySelector("#mensagens-erro");
         mensagensDeErro.innerHTML = "";
         //console.log("Oi, sou o botão, e fui clicado");
     });
+
+    function adicionarPacientesNaTabela(paciente){
+         //Cria o TD/TD do paciente
+        var pacienteTr = montaTr(paciente);
+         //Adicionando o paciente na tabela
+        var tabela = document.querySelector("#tabela-pacientes");
+        tabela.appendChild(pacienteTr);    
+    }
 
 
     function exigeMensagemErros(erros){
